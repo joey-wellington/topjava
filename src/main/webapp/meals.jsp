@@ -16,25 +16,20 @@
             <th>Timestamp</th>
             <th>Description</th>
             <th>Calories</th>
+            <th colspan="2">Action</th>
         </tr>
     </thead>
     <c:forEach items="${requestScope.meals}" var="meal">
-        <tr style="color:
-        <c:choose>
-        <c:when test="${meal.excess}">
-            indianred
-        </c:when>
-        <c:otherwise>
-            forestgreen
-        </c:otherwise>
-        </c:choose>
-            ">
+        <tr style="color: ${meal.excess ? 'indianred' : 'forestgreen'}">
             <td><c:out value="${f:formatLocalDateTime(meal.dateTime, 'yyyy-MM-dd HH:mm')}"/></td>
             <td><c:out value="${meal.description}"/></td>
             <td><c:out value="${meal.calories}"/></td>
+            <td><a href="meals?action=edit&id=<c:out value="${meal.id}"/>">Edit</a></td>
+            <td><a href="meals?action=delete&id=<c:out value="${meal.id}"/>">Delete</a></td>
         </tr>
     </c:forEach>
 </table>
+<p><a href="meals?action=add">Add meal</a></p>
 
 </body>
 </html>

@@ -10,6 +10,13 @@ public class TimeUtil {
     }
 
     public static String formatLocalDateTime(LocalDateTime localDateTime, String pattern) {
-        return localDateTime.format(DateTimeFormatter.ofPattern(pattern));
+        if (localDateTime != null) {
+            return localDateTime.format(DateTimeFormatter.ofPattern(pattern));
+        }
+        return "";
+    }
+
+    public static LocalDateTime parseLocalDateTime(String dateTimeString, String pattern) {
+        return LocalDateTime.parse(dateTimeString, DateTimeFormatter.ofPattern(pattern));
     }
 }
